@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cmf.hcguot.estate_management_system.dao.houseMapper">
+  <resultMap id="BaseResultMap" type="cmf.hcguot.estate_management_system.entity.House">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="num" jdbcType="VARCHAR" property="num" />
+    <result column="dep" jdbcType="VARCHAR" property="dep" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="area" jdbcType="VARCHAR" property="area" />
+    <result column="sell" jdbcType="VARCHAR" property="sell" />
+    <result column="unit" jdbcType="VARCHAR" property="unit" />
+    <result column="floor" jdbcType="VARCHAR" property="floor" />
+    <result column="direction" jdbcType="VARCHAR" property="direction" />
+    <result column="memo" jdbcType="VARCHAR" property="memo" />
+    <result column="ownerid" jdbcType="VARCHAR" property="ownerid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, num, dep, type, area, sell, unit, floor, direction, memo, ownerid
+  </sql>
+
+  <select id="findAllHouse" resultType="cmf.hcguot.estate_management_system.entity.House" resultMap="BaseResultMap">
+    select * from house
+  </select>
+
+  <select id="findAllHouseByOwnerid" parameterType="java.lang.Integer" resultType="cmf.hcguot.estate_management_system.entity.House" resultMap="BaseResultMap">
+    select * from house where ownerid
+  </select>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from house
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from house
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cmf.hcguot.estate_management_system.entity.House">
+    insert into house (id, num, dep, 
+      type, area, sell, unit, 
+      floor, direction, memo, 
+      ownerid)
+    values (#{id,jdbcType=INTEGER}, #{num,jdbcType=VARCHAR}, #{dep,jdbcType=VARCHAR}, 
+      #{type,jdbcType=VARCHAR}, #{area,jdbcType=VARCHAR}, #{sell,jdbcType=VARCHAR}, #{unit,jdbcType=VARCHAR}, 
+      #{floor,jdbcType=VARCHAR}, #{direction,jdbcType=VARCHAR}, #{memo,jdbcType=VARCHAR}, 
+      #{ownerid,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cmf.hcguot.estate_management_system.entity.House">
+    insert into house
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="num != null">
+        num,
+      </if>
+      <if test="dep != null">
+        dep,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="area != null">
+        area,
+      </if>
+      <if test="sell != null">
+        sell,
+      </if>
+      <if test="unit != null">
+        unit,
+      </if>
+      <if test="floor != null">
+        floor,
+      </if>
+      <if test="direction != null">
+        direction,
+      </if>
+      <if test="memo != null">
+        memo,
+      </if>
+      <if test="ownerid != null">
+        ownerid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="num != null">
+        #{num,jdbcType=VARCHAR},
+      </if>
+      <if test="dep != null">
+        #{dep,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null">
+        #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="sell != null">
+        #{sell,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null">
+        #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="floor != null">
+        #{floor,jdbcType=VARCHAR},
+      </if>
+      <if test="direction != null">
+        #{direction,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null">
+        #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="ownerid != null">
+        #{ownerid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cmf.hcguot.estate_management_system.entity.House">
+    update house
+    <set>
+      <if test="num != null">
+        num = #{num,jdbcType=VARCHAR},
+      </if>
+      <if test="dep != null">
+        dep = #{dep,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null">
+        area = #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="sell != null">
+        sell = #{sell,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null">
+        unit = #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="floor != null">
+        floor = #{floor,jdbcType=VARCHAR},
+      </if>
+      <if test="direction != null">
+        direction = #{direction,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null">
+        memo = #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="ownerid != null">
+        ownerid = #{ownerid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cmf.hcguot.estate_management_system.entity.House">
+    update house
+    set num = #{num,jdbcType=VARCHAR},
+      dep = #{dep,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      area = #{area,jdbcType=VARCHAR},
+      sell = #{sell,jdbcType=VARCHAR},
+      unit = #{unit,jdbcType=VARCHAR},
+      floor = #{floor,jdbcType=VARCHAR},
+      direction = #{direction,jdbcType=VARCHAR},
+      memo = #{memo,jdbcType=VARCHAR},
+      ownerid = #{ownerid,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

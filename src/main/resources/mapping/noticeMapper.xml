@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cmf.hcguot.estate_management_system.dao.noticeMapper">
+  <resultMap id="BaseResultMap" type="cmf.hcguot.estate_management_system.entity.Notice">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="ndate" jdbcType="DATE" property="ndate" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="uper" jdbcType="VARCHAR" property="uper" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, content, ndate, title, uper
+  </sql>
+
+  <select id="findAllNotice" resultType="cmf.hcguot.estate_management_system.entity.Notice" resultMap="BaseResultMap">
+    select * from notice
+  </select>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from notice
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from notice
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cmf.hcguot.estate_management_system.entity.Notice">
+    insert into notice (id, content, ndate, 
+      title, uper)
+    values (#{id,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR}, #{ndate,jdbcType=DATE}, 
+      #{title,jdbcType=VARCHAR}, #{uper,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cmf.hcguot.estate_management_system.entity.Notice">
+    insert into notice
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+      <if test="ndate != null">
+        ndate,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="uper != null">
+        uper,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="ndate != null">
+        #{ndate,jdbcType=DATE},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="uper != null">
+        #{uper,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cmf.hcguot.estate_management_system.entity.Notice">
+    update notice
+    <set>
+      <if test="content != null">
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="ndate != null">
+        ndate = #{ndate,jdbcType=DATE},
+      </if>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="uper != null">
+        uper = #{uper,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cmf.hcguot.estate_management_system.entity.Notice">
+    update notice
+    set content = #{content,jdbcType=VARCHAR},
+      ndate = #{ndate,jdbcType=DATE},
+      title = #{title,jdbcType=VARCHAR},
+      uper = #{uper,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
