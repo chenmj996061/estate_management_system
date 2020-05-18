@@ -1,3 +1,2 @@
 # estate_management_system
-springboot+mybatis后端基础查询以及前端接口的写入
-
+springboot + mybatis基本基础查询以及前端接口的编写
